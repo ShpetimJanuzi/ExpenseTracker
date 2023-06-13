@@ -1,5 +1,6 @@
 import pytest
-from expense import Expense, ExpenseTracker
+from expense import Expense
+from expense_tracker import ExpenseTracker
 
 def test_expense_creation():
     expense = Expense('2023-04-27', 'Food', 15.99, 'Lunch')
@@ -9,11 +10,13 @@ def test_expense_creation():
     assert expense.description == 'Lunch'
 
 def test_expense_tracker_add_and_view():
-    expense_tracker = ExpenseTracker('test_expenses.csv')
+    expense_tracker = ExpenseTracker('test_expensess.csv')
+    initial_expenses_count = len(expense_tracker.expenses)
     expense_tracker.add_expense('2023-04-27', 'Food', 15.99, 'Lunch')
     expenses = expense_tracker.expenses
-    assert len(expenses) == 1
-    assert expenses[0].date == '2023-04-27'
-    assert expenses[0].category == 'Food'
-    assert expenses[0].amount == 15.99
-    assert expenses[0].description == 'Lunch'
+    assert len(expenses) == initial_expenses_count + 1
+    assert expenses[-1].date == '2023-04-27'
+    assert expenses[-1].category == 'Food'
+    assert expenses[-1].amount == 15.99
+    assert expenses[-1].description == 'Lunch'
+

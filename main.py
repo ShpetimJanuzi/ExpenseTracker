@@ -1,4 +1,4 @@
-from expense import Expense, ExpenseTracker
+from expense_tracker import ExpenseTracker
 
 def main():
     expense_tracker = ExpenseTracker('expenses.csv')
